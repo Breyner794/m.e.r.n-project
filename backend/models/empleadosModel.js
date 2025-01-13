@@ -25,7 +25,7 @@ const Empleado = new mongoose.Schema({
         type: String,
         required: [true, "El Cargo es obligatorio"],
         enum:{
-            values: ['Capitan', 'Primer Oficial', 'auxiliar', 'mecanico', 'supervisor', 'gerente','Programador','Diseñador','Analista','Tester','Controladores de Trafico Aereo',
+            values: ['Capitan', 'Primer Oficial', 'Auxiliar', 'Mecanico', 'supervisor', 'gerente','Programador','Diseñador','Analista','Tester','Controladores de Trafico Aereo',
                 'Administrador','Soporte','Jefe de Cabina','Ingeniero','Asistentes de Vuelo','Despachador de Vuelo','Agentes de Puerta','Jefe','Director','Vicepresidente','Presidente','Azafata'],
             message: '{VALUE} no es un cargo válido'
         }

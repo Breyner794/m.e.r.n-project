@@ -310,43 +310,56 @@ const Reservas = () => {
       </form>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white rounded shadow">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="p-3 text-left">ID Pasajero</th>
-              <th className="p-3 text-left">ID Vuelo</th>
-              <th className="p-3 text-left">Fecha Reserva</th>
-              <th className="p-3 text-left">Clase</th>
-              <th className="p-3 text-left">Estado</th>
-              <th className="p-3 text-left">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredReservas.map((reserva) => (
-              <tr key={reserva._id} className="border-t">
-                <td className="p-3">{getCodigoPasajero(reserva.id_pasajero)}</td>
-                <td className="p-3">{getNumeroVuelo(reserva.id_vuelo)}</td>
-                <td className="p-3">{new Date(reserva.fecha_reserva).toLocaleDateString()}</td>
-                <td className="p-3">{reserva.clase}</td>
-                <td className="p-3">{reserva.estado_reserva}</td>
-                <td className="p-3">
-                  <button
-                    onClick={() => handleEdit(reserva)}
-                    className="bg-yellow-500 text-white px-2 py-1 rounded mr-2 hover:bg-yellow-600"
-                  >
-                    Editar
-                  </button>
-                  <button
-                    onClick={() => handleDelete(reserva._id)}
-                    className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <table className="min-w-full bg-white rounded shadow">
+  <thead className="bg-gray-100">
+    <tr>
+      <th className="p-3 text-left">ID MongoDB</th> {/* Nueva columna */}
+      <th className="p-3 text-left">ID Pasajero</th>
+      <th className="p-3 text-left">ID Vuelo</th>
+      <th className="p-3 text-left">Fecha Reserva</th>
+      <th className="p-3 text-left">Clase</th>
+      <th className="p-3 text-left">Estado</th>
+      <th className="p-3 text-left">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {filteredReservas.map((reserva) => (
+      <tr key={reserva._id} className="border-t">
+        <td className="p-3">
+          <span className="bg-gray-100 px-2 py-1 rounded text-sm font-mono">
+            {reserva._id}
+          </span>
+          <button
+              onClick={() => {
+                navigator.clipboard.writeText(reserva._id);
+                alert('ID copiado al portapapeles');
+              }}
+              className="ml-2 text-blue-500 hover:text-blue-700">
+                📋</button>
+        </td>
+        <td className="p-3">{getCodigoPasajero(reserva.id_pasajero)}</td>
+        <td className="p-3">{getNumeroVuelo(reserva.id_vuelo)}</td>
+        <td className="p-3">{new Date(reserva.fecha_reserva).toLocaleDateString()}</td>
+        <td className="p-3">{reserva.clase}</td>
+        <td className="p-3">{reserva.estado_reserva}</td>
+        <td className="p-3">
+          <button
+            onClick={() => handleEdit(reserva)}
+            className="bg-yellow-500 text-white px-2 py-1 rounded mr-2 hover:bg-yellow-600"
+          >
+            Editar
+          </button>
+          <button
+            onClick={() => handleDelete(reserva._id)}
+            className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
       </div>
     </div>
   );

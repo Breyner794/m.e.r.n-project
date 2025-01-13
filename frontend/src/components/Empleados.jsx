@@ -13,6 +13,20 @@ const Empleados = () => {
     fecha_contratacion: '',
     salario: '',
   });
+
+  const cargosEmpleados = [
+    'Capitan',
+    'Primer Oficial',
+    'Auxiliar',
+    'Mecanico',
+    'Controladores de Trafico Aereo',
+    'Tester',
+    'Azafata',
+    'Despachador de Vuelo',
+    'Asistentes de Vuelo',
+    'Jefe de Cabina'
+  ];
+
   const [isEditing, setIsEditing] = useState(false);
   const [currentEmpleado, setCurrentEmpleado] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -184,7 +198,7 @@ const Empleados = () => {
           <div>
             <label className="block mb-1">Fecha de Nacimiento</label>
             <input
-              type="text"
+              type="date"
               value={formData.fecha_nacimiento}
               onChange={(e) => setFormData({...formData, fecha_nacimiento: e.target.value})}
               className="w-full p-2 border rounded"
@@ -193,18 +207,24 @@ const Empleados = () => {
           </div>
           <div>
           <label className="block mb-1">Cargo</label>
-            <input
-              type="text"
-              value={formData.cargo}
-              onChange={(e) => setFormData({...formData, cargo: e.target.value})}
-              className="w-full p-2 border rounded"
+            <select
+              value ={formData.cargo}
+              onChange={(e)=> setFormData({...formData, cargo:e.target.value})}
+              className='w-full p-2 border rounded'
               required
-            />
+            >
+              <option value={""}>Seleccione el Cargo</option>
+              {cargosEmpleados.map((cargo) => (
+                <option key={cargo} value={cargo}>
+                  {cargo}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
           <label className="block mb-1">Fecha de Contratacion</label>
             <input
-              type="text"
+              type="date"
               value={formData.fecha_contratacion}
               onChange={(e) => setFormData({...formData, fecha_contratacion: e.target.value})}
               className="w-full p-2 border rounded"

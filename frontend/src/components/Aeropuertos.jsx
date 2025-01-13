@@ -10,6 +10,25 @@ const Aeropuertos = () => {
     Pais: '',
     Codigo_IATA: ''
   });
+
+  const paises = [
+    'Argentina',
+    'Brasil',
+    'Canadá',
+    'Dinamarca',
+    'España',
+    'Francia',
+    'Alemania',
+    'India',
+    'Japón',
+    'México',
+    'Nigeria',
+    'Rusia',
+    'Sudáfrica',
+    'Reino Unido',
+    'Estados Unidos'
+];
+
   const [isEditing, setIsEditing] = useState(false);
   const [currentIATA, setCurrentIATA] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -160,13 +179,19 @@ const Aeropuertos = () => {
           </div>
           <div>
             <label className="block mb-1">País</label>
-            <input
-              type="text"
+            <select
               value={formData.Pais}
               onChange={(e) => setFormData({...formData, Pais: e.target.value})}
               className="w-full p-2 border rounded"
               required
-            />
+            >
+              <option value="">Seleccione un Pais</option>
+              {paises.map((Pais) => (
+                <option key={Pais} value={Pais}>
+                  {Pais}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="block mb-1">Código IATA</label>

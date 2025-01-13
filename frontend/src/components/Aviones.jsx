@@ -12,6 +12,14 @@ const Aviones = () =>{
         year_fabricacion: '',
         estado_avion: '',
     });
+
+    const estadoavion = [
+      'activo',
+       'inactivo',
+        'mantenimiento',
+         'en_reparacion'
+    ];
+
     const [isEditing, setIsEditing] = useState(false);
     const [currentavion, setCurrentavion] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
@@ -167,7 +175,7 @@ const Aviones = () =>{
           <div>
             <label className="block mb-1">Capacidad</label>
             <input
-              type="text"
+              type="number"
               value={formData.capacidad}
               onChange={(e) => setFormData({...formData, capacidad: e.target.value})}
               className="w-full p-2 border rounded"
@@ -177,7 +185,7 @@ const Aviones = () =>{
           <div>
             <label className="block mb-1">Año de Fabricacion</label>
             <input
-              type="text"
+              type="date"
               value={formData.year_fabricacion}
               onChange={(e) => setFormData({...formData, year_fabricacion: e.target.value})}
               className="w-full p-2 border rounded"
@@ -186,13 +194,19 @@ const Aviones = () =>{
           </div>
           <div>
           <label className="block mb-1">Estado del Avion</label>
-            <input
-              type="text"
+          <select
               value={formData.estado_avion}
               onChange={(e) => setFormData({...formData, estado_avion: e.target.value})}
               className="w-full p-2 border rounded"
               required
-            />
+            >
+              <option value="">Seleccione un tipo de estado</option>
+              {estadoavion.map((estado_avion) => (
+                <option key={estado_avion} value={estado_avion}>
+                  {estado_avion}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="mt-4 flex gap-2">

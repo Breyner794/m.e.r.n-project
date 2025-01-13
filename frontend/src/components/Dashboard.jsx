@@ -215,7 +215,7 @@ const Dashboard = () => {
               </h1>
               <div className="flex items-center">
                 <span className="text-gray-700 mr-4">
-                  Bienvenido, {user?.email || 'Usuario'}
+                  Bienvenido, {user?.username || 'Usuario'}{ }
                 </span>
                 <button
                   onClick={handleLogout}
