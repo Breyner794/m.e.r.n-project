@@ -37,7 +37,7 @@ const Equipajes = () => {
 
   const fetchEquipajes = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/equipaje', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/equipaje`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -53,8 +53,8 @@ const Equipajes = () => {
     e.preventDefault();
     try {
       const url = isEditing 
-        ? `http://localhost:5000/api/equipaje/${currentId}`
-        : 'http://localhost:5000/api/equipaje';
+        ? `${process.env.REACT_APP_API_URL}/api/equipaje/${currentId}`
+        : `${process.env.REACT_APP_API_URL}/api/equipaje`;
         
       const response = await fetch(url, {
         method: isEditing ? 'PUT' : 'POST',
@@ -80,7 +80,7 @@ const Equipajes = () => {
   const handleDelete = async (id) => {
     if (window.confirm('¿Estás seguro de eliminar este equipaje?')) {
       try {
-        await fetch(`http://localhost:5000/api/equipaje/${id}`, {
+        await fetch(`${process.env.REACT_APP_API_URL}/api/equipaje/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`

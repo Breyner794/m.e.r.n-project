@@ -37,7 +37,7 @@ const Empleados = () => {
 
   const fetchEmpleados = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/empleados', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/empleados`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -57,8 +57,8 @@ const Empleados = () => {
     
     try {
       const url = isEditing 
-        ? `http://localhost:5000/api/empleados/${currentEmpleado}`
-        : 'http://localhost:5000/api/empleados';
+        ? `${process.env.REACT_APP_API_URL}/api/empleados/${currentEmpleado}`
+        : `${process.env.REACT_APP_API_URL}/api/empleados`;
         
       const response = await fetch(url, {
         method: isEditing ? 'PUT' : 'POST',
@@ -87,7 +87,7 @@ const Empleados = () => {
   const handleDelete = async (codigo_empleado) => {
     if (window.confirm('¿Estás seguro de eliminar este aeropuerto?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/empleados/${codigo_empleado}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/empleados/${codigo_empleado}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`

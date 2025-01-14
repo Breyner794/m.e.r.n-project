@@ -32,7 +32,7 @@ const Aviones = () =>{
 
         try{
 
-            const response =await fetch('http://localhost:5000/api/aviones',{
+            const response =await fetch(`${process.env.REACT_APP_API_URL}/api/aviones`,{
                 headers:{
                     'Authorization': `Bearer ${token}`
                 }
@@ -51,8 +51,8 @@ const Aviones = () =>{
         try{
 
             const url = isEditing
-            ? `http://localhost:5000/api/aviones/${currentavion}`
-            : 'http://localhost:5000/api/aviones';
+            ? `${process.env.REACT_APP_API_URL}/api/aviones/${currentavion}`
+            : `${process.env.REACT_APP_API_URL}/api/aviones`;
 
             const response = await fetch(url,{
                 method: isEditing ? 'PUT' : 'POST',
@@ -80,7 +80,7 @@ const Aviones = () =>{
     const handleDelete = async (codigo) => {
     if (window.confirm('¿Estás seguro de eliminar este avion?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/aviones/${codigo}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/aviones/${codigo}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`

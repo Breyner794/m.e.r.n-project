@@ -18,7 +18,12 @@ const testRoutes = require('./routes/testRoutes.js')
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 /* app.use(express.urlencoded({extended:true})) */
 
@@ -41,7 +46,13 @@ app.use('/api/equipaje', equipajeRouter);
 app.use('/api/tripulacion', tripulacionRouter);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Servidor corriendo en puerto ${PORT}`);
 });
 
+
+  
+
+    // (5000, '0.0.0.0', () => {
+    //   console.log('Servidor corriendo en puerto 5000'); (PORT, () => {
+  //console.log(`Servidor corriendo en puerto ${PORT}`);

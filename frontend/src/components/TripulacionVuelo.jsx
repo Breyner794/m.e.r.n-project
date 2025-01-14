@@ -33,7 +33,7 @@ const Tripulacion = () => {
 
   const fetchTripulaciones = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/tripulacion', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/tripulacion`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -47,7 +47,7 @@ const Tripulacion = () => {
 
   const fetchVuelos = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/vuelos', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/vuelos`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -61,7 +61,7 @@ const Tripulacion = () => {
 
   const fetchEmpleados = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/empleados', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/empleados`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -77,8 +77,8 @@ const Tripulacion = () => {
     e.preventDefault();
     try {
       const url = isEditing 
-        ? `http://localhost:5000/api/tripulacion/${currentId}`
-        : 'http://localhost:5000/api/tripulacion';
+        ? `${process.env.REACT_APP_API_URL}/api/tripulacion/${currentId}`
+        : `${process.env.REACT_APP_API_URL}/api/tripulacion`;
 
       // Encontrar el vuelo y empleado seleccionados para obtener sus códigos
       const vueloSeleccionado = vuelos.find(v => v._id === formData.id_vuelo);
@@ -118,7 +118,7 @@ const Tripulacion = () => {
   const handleDelete = async (id) => {
     if (window.confirm('¿Estás seguro de eliminar este miembro de la tripulación?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/tripulacion/${id}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/tripulacion/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`

@@ -36,7 +36,7 @@ const Reservas = () => {
 
   const fetchPasajeros = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/pasajeros', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/pasajeros`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -48,7 +48,7 @@ const Reservas = () => {
 
   const fetchVuelos = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/vuelos', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/vuelos`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -60,7 +60,7 @@ const Reservas = () => {
 
   const fetchReservas = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/reservas', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/reservas`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -77,8 +77,8 @@ const Reservas = () => {
     e.preventDefault();
     try {
       const url = isEditing 
-        ? `http://localhost:5000/api/reservas/${currentId}`
-        : 'http://localhost:5000/api/reservas';
+        ? `${process.env.REACT_APP_API_URL}/api/reservas/${currentId}`
+        : `${process.env.REACT_APP_API_URL}/api/reservas`;
 
       // Buscar el pasajero y vuelo seleccionados para obtener sus códigos
       const pasajeroSeleccionado = pasajeros.find(p => p._id === formData.id_pasajero);
@@ -123,7 +123,7 @@ const Reservas = () => {
   const handleDelete = async (id) => {
     if (window.confirm('¿Estás seguro de eliminar esta reserva?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/reservas/${id}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/reservas/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`

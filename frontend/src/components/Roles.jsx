@@ -35,7 +35,7 @@ const Roles = () => {
 
   const fetchRoles = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/roles', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/roles`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -51,8 +51,8 @@ const Roles = () => {
     e.preventDefault();
     try {
       const url = isEditing 
-        ? `http://localhost:5000/api/roles/${currentId}`
-        : 'http://localhost:5000/api/roles';
+        ? `${process.env.REACT_APP_API_URL}/api/roles/${currentId}`
+        : `${process.env.REACT_APP_API_URL}/api/roles`;
         
       const response = await fetch(url, {
         method: isEditing ? 'PUT' : 'POST',
@@ -79,7 +79,7 @@ const Roles = () => {
   const handleDelete = async (id) => {
     if (window.confirm('¿Estás seguro de eliminar este rol?')) {
       try {
-        const response = await fetch(`http://localhost:5000/api/roles/${id}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/roles/${id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`
